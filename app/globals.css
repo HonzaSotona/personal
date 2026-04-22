@@ -1,0 +1,123 @@
+@import "tailwindcss";
+
+:root {
+  --background: #000000;
+  --foreground: #00ff9c;
+  --accent: #00ffcc;
+  --muted: #008f5a;
+  --danger: #ff3860;
+  --amber: #ffcf5c;
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-accent: var(--accent);
+  --color-muted: var(--muted);
+  --color-danger: var(--danger);
+  --color-amber: var(--amber);
+  --font-sans: var(--font-geist-mono);
+  --font-mono: var(--font-geist-mono);
+}
+
+html,
+body {
+  background: var(--background);
+  color: var(--foreground);
+  font-family: var(--font-geist-mono), ui-monospace, SFMono-Regular, Menlo, monospace;
+  min-height: 100%;
+}
+
+body {
+  background-image:
+    radial-gradient(ellipse at top, rgba(0, 255, 156, 0.08), transparent 60%),
+    radial-gradient(ellipse at bottom, rgba(0, 255, 204, 0.05), transparent 60%);
+  background-attachment: fixed;
+}
+
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  background: repeating-linear-gradient(
+    to bottom,
+    rgba(0, 255, 156, 0.04) 0px,
+    rgba(0, 255, 156, 0.04) 1px,
+    transparent 1px,
+    transparent 3px
+  );
+  z-index: 50;
+  mix-blend-mode: screen;
+}
+
+body::after {
+  content: "";
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  background: radial-gradient(ellipse at center, transparent 55%, rgba(0, 0, 0, 0.55) 100%);
+  z-index: 49;
+}
+
+::selection {
+  background: rgba(0, 255, 156, 0.35);
+  color: #000;
+}
+
+@keyframes blink {
+  0%, 49% { opacity: 1; }
+  50%, 100% { opacity: 0; }
+}
+.cursor-blink {
+  display: inline-block;
+  width: 0.6ch;
+  animation: blink 1s steps(1) infinite;
+}
+
+@keyframes flicker {
+  0%, 100% { opacity: 1; }
+  45% { opacity: 0.96; }
+  50% { opacity: 0.85; }
+  55% { opacity: 0.97; }
+}
+.crt {
+  animation: flicker 6s infinite;
+}
+
+@keyframes glitch {
+  0%, 100% { transform: translate(0, 0); text-shadow: 0 0 8px rgba(0,255,156,0.5); }
+  20% { transform: translate(-1px, 0); text-shadow: 2px 0 0 rgba(255,56,96,0.6), -2px 0 0 rgba(0,255,204,0.6); }
+  40% { transform: translate(1px, 0); }
+  60% { transform: translate(0, 1px); text-shadow: 2px 0 0 rgba(0,255,204,0.6), -2px 0 0 rgba(255,56,96,0.6); }
+  80% { transform: translate(0, -1px); }
+}
+.glitch {
+  animation: glitch 3.5s infinite;
+}
+
+.glow {
+  text-shadow: 0 0 6px rgba(0, 255, 156, 0.45), 0 0 18px rgba(0, 255, 156, 0.2);
+}
+
+.terminal-border {
+  border: 1px solid rgba(0, 255, 156, 0.35);
+  box-shadow:
+    0 0 0 1px rgba(0, 255, 156, 0.05) inset,
+    0 0 20px rgba(0, 255, 156, 0.08);
+  background: rgba(0, 20, 10, 0.35);
+  backdrop-filter: blur(2px);
+}
+
+.terminal-border:hover {
+  border-color: rgba(0, 255, 156, 0.6);
+  box-shadow:
+    0 0 0 1px rgba(0, 255, 156, 0.15) inset,
+    0 0 30px rgba(0, 255, 156, 0.18);
+}
+
+.ascii-divider {
+  color: rgba(0, 255, 156, 0.4);
+  letter-spacing: -1px;
+  user-select: none;
+}
